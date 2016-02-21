@@ -6,6 +6,8 @@ set "times=1"
 
 :help
 
+goto :eof
+
 :parseArgs
 
 if "%~1" == "" goto main
@@ -35,6 +37,7 @@ if /i "%~1" == "--output" (
 )
 
 shift
+goto parseArgs
 
 :curl
 
