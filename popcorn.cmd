@@ -4,6 +4,8 @@ setlocal
 set "output=nul"
 set "times=1"
 
+goto :parseArgs
+
 :help
 
 goto :eof
