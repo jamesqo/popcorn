@@ -56,7 +56,7 @@ goto parseArgs
 
 :curl
 
-@powershell -NoProfile "iwr %~1 -OutFile %~2 > $null"
+@powershell -NoProfile "(New-Object Net.WebClient).DownloadString('%~1') > %~2"
 
 goto :eof
 
