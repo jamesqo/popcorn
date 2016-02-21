@@ -2,6 +2,8 @@
 
 help()
 {
+    # todo: put something here
+    true
 }
 
 usage()
