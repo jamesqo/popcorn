@@ -27,26 +27,26 @@ shift
 
 if "%~1" == "" goto main
 
-if /i "%~1" == "-?" goto help
-if /i "%~1" == "-h" goto help
-if /i "%~1" == "--help" goto help
+if /i %1 == "-?" goto help
+if /i %1 == "-h" goto help
+if /i %1 == "--help" goto help
 
-if /i "%~1" == "-t" (
+if /i %1 == "-t" (
     set "times=%~2"
     shift
 )
 
-if /i "%~1" == "--times" (
+if /i %1 == "--times" (
     set "times=%~2"
     shift
 )
 
-if /i "%~1" == "-o" (
+if /i %1 == "-o" (
     set "output=%~2"
     shift
 )
 
-if /i "%~1" == "--output" (
+if /i %1 == "--output" (
     set "output=%~2"
     shift
 )
