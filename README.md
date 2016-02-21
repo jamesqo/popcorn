@@ -26,19 +26,19 @@ pwd -P | xargs -i echo 'export PATH="$PATH:{}"' | tee -a ~/.profile
 
 To send an HTTP request to your package once:
 
-```console
+```bash
 popcorn
 ```
 
 To specify the output file:
 
-```console
+```bash
 popcorn -o output.nupkg
 ```
 
 If you want to do it multiple times, pass in `--times`:
 
-```console
+```bash
 popcorn --times 5
 ```
 
@@ -48,12 +48,12 @@ Don't like doing all of this manually? **popcornd** is a daemon that runs in the
 
 Start a server like this:
 
-```console
+```bash
 popcornd
 ```
 
 To specify the frequency of downloads:
 
-```console
+```bash
 popcornd --freq 60 # one HTTP request every minute
 ```
