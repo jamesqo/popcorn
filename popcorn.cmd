@@ -8,9 +8,14 @@ goto :parseArgs
 
 :help
 
+:: TODO: put something here.
+
 goto :eof
 
 :parseArgs
+
+set "package=%~1"
+shift
 
 if "%~1" == "" goto main
 
