@@ -31,8 +31,17 @@ do
             times=$1
             ;;
         *)
-            usage
+            package=$1
             ;;
     esac
     shift
+done
+
+test ! -z "$package" || usage
+
+url=https://www.nuget.org/api/v2/package/$package
+
+for i in {1..$times}
+do
+    curl -sSLo "$output" "$url"
 done
