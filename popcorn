@@ -42,8 +42,9 @@ done
 test ! -z "$package" || usage
 
 url=https://www.nuget.org/api/v2/package/$package
+seq=$(seq 1 $times)
 
-for i in $(seq 1 $times)
+for i in $seq
 do
     curl -sSLo "$output" "$url"
 done
