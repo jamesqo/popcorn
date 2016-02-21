@@ -19,7 +19,7 @@ cd popcorn
 ```bash
 git clone git@github.com:jamesqo/popcorn.git
 cd popcorn
-pwd -P | xargs -i echo 'export PATH="$PATH:{}"' | tee ~/.profile
+pwd -P | xargs -i echo 'export PATH="$PATH:{}"' | tee -a ~/.profile
 ```
 
 ## Usage
