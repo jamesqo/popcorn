@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+help()
+{
+}
+
+usage()
+{
+    help 1>&2
+    exit 1
+}
+
+output=/dev/null
+times=1
+
+test $# -gt 0 || usage
+
+while [ $# -gt 0 ]
+do
+    case "$1" in
+        '-?'|-h|--help)
+            help
+            exit 0
+            ;;
+        -o|--output)
+            shift
+            output=$1
+            ;;
+        -t|--times)
+            shift
+            times=$1
+            ;;
+        *)
+            usage
+            ;;
+    esac
+    shift
+done
