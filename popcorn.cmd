@@ -12,8 +12,14 @@ goto :parseArgs
 
 goto :eof
 
+:usage
+
+call :help 1>&2
+exit /b 1
+
 :parseArgs
 
+if "%~1" == "" goto usage
 set "package=%~1"
 shift
 
