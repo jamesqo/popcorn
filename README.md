@@ -39,7 +39,7 @@ popcorn -o output.nupkg
 If you want to do it multiple times, pass in `--times`:
 
 ```bash
-popcorn --times 5
+popcorn --times 5 # sends 5 HTTP requests
 ```
 
 ### popcornd
