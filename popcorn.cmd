@@ -4,7 +4,7 @@ setlocal
 set "output=nul"
 set "times=1"
 
-goto :parseArgs
+goto :parsePackage
 
 :help
 
@@ -17,11 +17,13 @@ goto :eof
 call :help 1>&2
 exit /b 1
 
-:parseArgs
+:parsePackage
 
 if "%~1" == "" goto usage
 set "package=%~1"
 shift
+
+:parseArgs
 
 if "%~1" == "" goto main
 
