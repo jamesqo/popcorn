@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set "output=nul"
+set "output=$null"
 set "times=1"
 
 goto :parsePackage
@@ -56,7 +56,7 @@ goto parseArgs
 
 :curl
 
-@powershell -NoProfile "iwr %~1 -OutFile %~2" 2> nul
+@powershell -NoProfile "iwr %~1 -OutFile %~2 > $null"
 
 goto :eof
 
