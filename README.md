@@ -69,3 +69,9 @@ To run the daemon synchronously:
 ```bash
 popcornd --sync
 ```
+
+To forward arguments to the **popcorn** script:
+
+```bash
+popcornd --forward '-o foobar.nupkg --times 6'
+```
