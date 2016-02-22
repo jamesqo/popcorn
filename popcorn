@@ -2,8 +2,28 @@
 
 help()
 {
-    # todo: put something here
-    true
+    cat "$(swd)/help/popcorn.txt"
+}
+
+scriptpath()
+{
+    result=${BASH_SOURCE[0]}
+
+    # unfortunately readlink -f isn't available on Macs,
+    # so resolve the symlinks manually
+    while [ -h "$result" ]
+    do
+        symdir=$(dirname "$result")
+        cd -P "$symdir"
+        result=$(readlink "$result")
+    done
+
+    echo "$result"
+}
+
+swd()
+{
+    dirname "$(scriptpath)"
 }
 
 usage()
