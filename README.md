@@ -57,3 +57,21 @@ To specify the frequency of downloads:
 ```bash
 popcornd --freq 60 # one HTTP request every minute
 ```
+
+To tell the daemon when to stop:
+
+```bash
+popcornd --stop-after 3600 # close the process after an hour
+```
+
+To run the daemon synchronously:
+
+```bash
+popcornd --sync
+```
+
+To forward arguments to the **popcorn** script:
+
+```bash
+popcornd --forward '-o foobar.nupkg --times 6'
+```

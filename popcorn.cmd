@@ -1,10 +1,27 @@
 @echo off
 setlocal
 
-set "output=nul"
+set "output=$null"
 set "times=1"
 
+goto :parsePackage
+
 :help
+
+:: TODO: put something here.
+
+goto :eof
+
+:usage
+
+call :help 1>&2
+exit /b 1
+
+:parsePackage
+
+if "%~1" == "" goto usage
+set "package=%~1"
+shift
 
 :parseArgs
 
@@ -35,10 +52,11 @@ if /i "%~1" == "--output" (
 )
 
 shift
+goto parseArgs
 
 :curl
 
-@powershell -NoProfile "iwr %~1 -OutFile %~2" 2> nul
+@powershell -NoProfile "(New-Object Net.WebClient).DownloadString('%~1') > '%~2'"
 
 goto :eof
 
