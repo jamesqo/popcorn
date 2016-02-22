@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+help()
+{
+    # todo: replace with something meaningful
+    true
+}
+
+popcorn()
+{
+    "$(swd)/popcorn" "$@"
+}
+
+scriptpath()
+{
+    result=${BASH_SOURCE[0]}
+
+    # unfortunately readlink -f isn't available on Macs,
+    # so resolve the symlinks manually
+    while [ -h "$result" ]
+    do
+        symdir=$(dirname "$result")
+        cd -P "$symdir"
+        result=$(readlink "$result")
+    done
+
+    echo "$result"
+}
+
+swd()
+{
+    dirname "$(scriptpath)"
+}
+
+usage()
+{
+    help 1>&2
+    exit 1
+}
+
+async=true
+freq=120 # once every 2 mins
+
+while [ $# -gt 0 ]
+do
+    case "$1" in
+    	'-?'|-h|--help)
+	        help
+            exit 0
+            ;;
+        -f|--freq)
+            shift
+            freq=$1
+            ;;
+        --forward)
+            shift
+            forward_args=$1
+            ;;
+        --stop-after)
+            shift
+            duration=$1
+            ;;
+        --sync)
+            async=false
+            ;;
+        *)
+            package=$1
+            ;;
+    esac
+    shift
+done
+
+test ! -z "$package" || usage
+
+# if --sync isn't passed, rerun the script as a background task
+$async && exec nohup "$(scriptpath)" --sync "$@" 0<&- &> /dev/null &
+
+start=$(date +%s) # seconds since 1/1/1970
+end=$((start + duration))
+
+while [ $(date +%s) -lt $end ]
+do
+    popcorn "$package" $forward_args
+    sleep $freq
+done
