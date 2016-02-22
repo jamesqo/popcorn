@@ -10,7 +10,7 @@ goto :parsePackage
 
 :help
 
-:: TODO: put something here.
+type "%~dp0help\popcornd.txt"
 
 goto :eof
 
