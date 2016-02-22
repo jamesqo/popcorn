@@ -38,6 +38,7 @@ usage()
     exit 1
 }
 
+args=("$@") # capture them here so we can use them if --sync's not passed
 async=true
 freq=120 # once every 2 mins
 
@@ -73,13 +74,13 @@ done
 test ! -z "$package" || usage
 
 # if --sync isn't passed, rerun the script as a background task
-$async && exec nohup "$(scriptpath)" --sync "$@" 0<&- &> /dev/null &
+$async && exec nohup "$(scriptpath)" --sync "${args[@]}" 0<&- &> /dev/null &
 
 start=$(date +%s) # seconds since 1/1/1970
 end=$((start + duration))
 
 while [ $(date +%s) -lt $end ]
 do
-    popcorn "$package" $forward_args
+    popcorn "$package" $forward_args # don't quote intentionally here
     sleep $freq
 done
