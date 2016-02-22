@@ -40,6 +40,7 @@ usage()
 
 args=("$@") # capture them here so we can use them if --sync's not passed
 async=true
+duration=$(date +%s) # hopefully your script doesn't run 46 years
 freq=120 # once every 2 mins
 
 while [ $# -gt 0 ]
