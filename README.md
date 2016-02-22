@@ -27,7 +27,7 @@ pwd -P | xargs -i echo 'export PATH="$PATH:{}"' | tee -a ~/.profile
 To send an HTTP request to your package once:
 
 ```bash
-popcorn
+popcorn Your.Package
 ```
 
 To specify the output file:
@@ -49,7 +49,7 @@ Don't like doing all of this manually? **popcornd** is a daemon that runs in the
 Start a server like this:
 
 ```bash
-popcornd
+popcornd LibFoobar
 ```
 
 To specify the frequency of downloads:
