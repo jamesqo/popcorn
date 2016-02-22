@@ -2,8 +2,7 @@
 
 help()
 {
-    # todo: replace with something meaningful
-    true
+    cat "$(swd)/help/popcornd.txt"
 }
 
 popcorn()
