@@ -63,3 +63,8 @@ shift
 goto parseArgs
 
 :doneParsing
+
+if "%async%" == "true" (
+    start /b "%~f0" --sync %*
+    exit %errorlevel%
+)
