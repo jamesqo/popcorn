@@ -10,6 +10,12 @@ popcorn()
     "$(swd)/popcorn" "$@"
 }
 
+rerun_async()
+{
+    nohup "$(scriptpath)" --sync "$@" 0<&- &> /dev/null &
+    exit $?
+}
+
 scriptpath()
 {
     result=${BASH_SOURCE[0]}
@@ -74,7 +80,7 @@ done
 test ! -z "$package" || usage
 
 # if --sync isn't passed, rerun the script as a background task
-$async && exec nohup "$(scriptpath)" --sync "${args[@]}" 0<&- &> /dev/null &
+$async && rerun_async "${args[@]}"
 
 start=$(date +%s) # seconds since 1/1/1970
 end=$((start + duration))
