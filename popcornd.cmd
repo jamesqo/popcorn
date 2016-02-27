@@ -2,6 +2,7 @@
 setlocal
 
 set "async=true"
+set "flagfile=%TEMP%\popcorn\flagfile-%RANDOM%"
 set "freq=120"
 
 goto :parsePackage
@@ -64,7 +65,24 @@ goto parseArgs
 
 :doneParsing
 
+:: Rerun the script using start /b if --sync isn't passed
 if "%async%" == "true" (
     start /b "%~f0" --sync %*
-    exit /b %errorlevel%
+    exit /b %ERRORLEVEL%
+)
+
+if "%duration%" != "" (
+    :: Create a file in %duration% minutes that will signal we have to stop
+    start cmd /c "timeout %duration% && type nul > %flagfile%"
+)
+
+:loop
+
+if not exist "%flagfile%" (
+    :: Do the actual work
+    popcorn "%package%" %forwardArgs%
+    
+    :: Sleep and continue the loop
+    timeout %freq% > nul
+    goto loop
 )
