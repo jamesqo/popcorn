@@ -86,3 +86,6 @@ if not exist "%flagfile%" (
     timeout %freq% > nul
     goto loop
 )
+
+:: Delete the marker file
+del "%flagfile%"
