@@ -2,6 +2,8 @@ Popcorn is a command-line utility that lets you make your NuGet package look pop
 
 Usage: popcorn Your.NuGet.Package [options]
 
+Fakes one download of Your.NuGet.Package.
+
 Options:
 
 -o,--output file            Save the .nupkg to the specified file. By default, the output is swallowed.
