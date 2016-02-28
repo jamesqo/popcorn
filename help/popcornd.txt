@@ -1,1 +1,12 @@
+popcornd (popcorn daemon) runs popcorn in the background for you, so you don't have to do it yourself.
 
+Usage: popcornd Your.Package [options]
+
+Runs popcorn in the background on Your.Package every 2 minutes.
+
+Options:
+
+-f,--freq seconds            Control the frequency at which Popcorn is run. By default, this is 120.
+--forward args               Arguments to forward to the popcorn script. For example: --forward '-o foo.nupkg'
+--stop-after seconds         Set the duration for which popcornd will run. By default, this is forever.
+--sync                       Run popcornd synchronously, which means it'll take over the current process until it's finished.
