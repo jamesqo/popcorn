@@ -71,7 +71,7 @@ if "%async%" == "true" (
     exit /b %ERRORLEVEL%
 )
 
-if "%duration%" != "" (
+if "%duration%" neq "" (
     :: Create a file in %duration% minutes that will signal we have to stop
     start cmd /c "timeout %duration% && type nul > %flagfile%"
 )
